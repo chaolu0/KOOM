@@ -8,11 +8,16 @@ KOOM(Kwai OOM, Kill OOM)是快手性能优化团队在处理移动端OOM问题�
 
 
 ## KOOM 指南
+
+### 运行demo
+
+首先建议跑通一下项目自带demo(koom-demo项目)，对KOOM提供的基础功能和概念有一个大致的了解。
+
 ### 依赖接入
 
 ```gradle
 dependencies {
-    implementation 'com.kwai.koom:java-oom:1.0.0'
+    implementation 'com.kwai.koom:java-oom:1.0.7'
 }
 ```
 
@@ -54,6 +59,26 @@ public void listenReportGenerateStatus() {
 }
 ```
 
+### JAVA8 要求
+```gradle
+compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+```
+
+### 自定义需求
+
+查看wiki [Advanced Custom Feature](https://github.com/KwaiAppTeam/KOOM/wiki/Advanced-Custom-Feature)
+
+### Compatibility
+
+See wiki [Compatibility](https://github.com/KwaiAppTeam/KOOM/wiki/Compatibility)
+
+### FAQ
+
+See wiki [FAQ](https://github.com/KwaiAppTeam/KOOM/wiki/FAQ)
+
 ### 镜像采集性能对比
 随机采集线上真实用户的内存镜像，普通dump和fork子进程dump阻塞用户使用的耗时如下：
 
@@ -82,4 +107,6 @@ KOOM 以 Apache-2.0 证书开源，详情参见 [LICENSE](./LICENSE)。
 
 
 ## 问题 & 反馈
-欢迎提 [issues](https://github.com/KwaiAppTeam/KOOM/issues) 提问反馈。
+欢迎提 [issues](https://github.com/KwaiAppTeam/KOOM/issues) 提问反馈，或者加入微信群。
+
+<img src=./doc/images/wechat6.jpg/>。

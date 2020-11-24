@@ -18,10 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        pickFirst('lib/armeabi-v7a/libc++_shared.so')
+        pickFirst('lib/arm64-v8a/libc++_shared.so')
+    }
 }
 
 dependencies {
     implementation project(':java-oom')
+    //implementation 'com.kwai.koom:java-oom:1.0.7'
     implementation deps.androidx.appcompat
     implementation deps.androidx.constraintlayout
     implementation deps.material

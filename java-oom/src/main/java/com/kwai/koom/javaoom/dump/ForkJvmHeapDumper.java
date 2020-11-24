@@ -1,7 +1,9 @@
 package com.kwai.koom.javaoom.dump;
 
+import java.io.IOException;
+
+import android.os.Build;
 import android.os.Debug;
-import android.util.Log;
 
 import com.kwai.koom.javaoom.KOOMEnableChecker;
 import com.kwai.koom.javaoom.common.KGlobalConfig;
@@ -53,6 +55,16 @@ public class ForkJvmHeapDumper implements HeapDumper {
       return false;
     }
 
+    if (!KOOMEnableChecker.get().isSpaceEnough()) {
+      KLog.e(TAG, "dump failed caused by disk space not enough!");
+      return false;
+    }
+
+    // Compatible with Android 11
+    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+      return dumpHprofDataNative(path);
+    }
+
     boolean dumpRes = false;
     try {
       int pid = trySuspendVMThenFork();
@@ -67,8 +79,9 @@ public class ForkJvmHeapDumper implements HeapDumper {
         KLog.i(TAG, "hprof pid:" + pid + " dumped: " + path);
       }
 
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
+      KLog.e(TAG, "dump failed caused by IOException!");
     }
     return dumpRes;
   }
@@ -83,7 +96,7 @@ public class ForkJvmHeapDumper implements HeapDumper {
    *
    * @return init result
    */
-  private native boolean initForkDump();
+  private native void initForkDump();
 
   /**
    * First do suspend vm, then do fork.
@@ -108,4 +121,9 @@ public class ForkJvmHeapDumper implements HeapDumper {
    * Resume the VM.
    */
   private native void resumeVM();
+
+  /**
+   * Dump hprof with hidden c++ API
+   */
+  public static native boolean dumpHprofDataNative(String fileName);
 }

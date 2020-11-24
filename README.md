@@ -1,5 +1,4 @@
 [![license](https://img.shields.io/badge/license-Apache--2.0-brightgreen.svg)](https://github.com/KwaiAppTeam/KOOM/blob/master/LICENSE)
-[![Release Version](https://img.shields.io/badge/release-1.0.0-brightgreen.svg)](https://github.com/KwaiAppTeam/KOOM/releases)
 [![Platform](https://img.shields.io/badge/Platform-Android-brightgreen.svg)](https://github.com/KwaiAppTeam/KOOM/wiki/home)
 # KOOM
 An OOM killer on mobile platform by Kwai. 
@@ -23,11 +22,16 @@ You just need to init KOOM,  and it will take care of other things for you. Adva
 
 
 ## Getting started
+
+### First look of koom-demo
+
+Try to run the koom-demo project first, and have a general understanding of the functionality provided by KOOM.
+
 ### Gradle dependencies
 
 ```gradle
 dependencies {
-    implementation 'com.kwai.koom:java-oom:1.0.0'
+    implementation 'com.kwai.koom:java-oom:1.0.7'
 }
 ```
 
@@ -73,6 +77,27 @@ public void listenReportGenerateStatus() {
     });
 }
 ```
+
+### JAVA8 Requirements
+```gradle
+compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+```
+
+### Custom Feature
+
+See wiki [Advanced Custom Feature](https://github.com/KwaiAppTeam/KOOM/wiki/Advanced-Custom-Feature)
+
+### Compatibility
+
+See wiki [Compatibility](https://github.com/KwaiAppTeam/KOOM/wiki/Compatibility)
+
+### FAQ
+
+See wiki [FAQ](https://github.com/KwaiAppTeam/KOOM/wiki/FAQ)
+
 ## Performance
 Randomly dump hprof of real users online, and the time consumed by normal dump and for dump blocking users is as follows:
 
@@ -89,6 +114,8 @@ Check out the [CHANGELOG.md](./CHANGELOG.md) for details of change history.
 ## Contributing
 If you are interested in contributing, check out the [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-## FAQ & Feedback
-Welcome report [issues](https://github.com/KwaiAppTeam/KOOM/issues) or contact us.
+## Feedback
+Welcome report [issues](https://github.com/KwaiAppTeam/KOOM/issues) or contact us in WeChat group.
+
+<img src=./doc/images/wechat6.jpg/>
 
